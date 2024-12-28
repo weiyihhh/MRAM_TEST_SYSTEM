@@ -45,4 +45,5 @@ def DPO_READ_WAVE(Address, Channel):
     Device.timeout = 2000
     Device.chunk_size = 20 * 1024 * 1024
     Device.write(":WAVeform:STARt 0")
-    Device.write("WAV:SOUR {}".format(Channel))
+    Device.write(f"WAV:SOUR {Channel}")
+    DE
