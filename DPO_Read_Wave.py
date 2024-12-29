@@ -4,8 +4,8 @@ import struct
 import math
 import gc
 
-DPO_Addr = 'TCPIP0::192.168.2.177::inst0::INSTR'
-CHANNEL = 'C2'
+DPO_Addr = 'USB0::0xF4EC::0x1013::SDS62DDX800034::INSTR'
+CHANNEL = 'C1'
 HORI_NUM = 10
 """HORI_NUM 的值为 10，这意味着屏幕上水平轴的单位数被分成了 10 个分度。在代码中，HORI_NUM 主要用于计算 时间轴 上的每个数据点对应的时间值。
 结合 tdiv（时间基准，单位通常是 sec/div）、interval（采样间隔）和 delay（延迟），HORI_NUM 帮助确定每个波形点的时间位置。
@@ -29,7 +29,7 @@ def main_desc(recv):       #recv；从示波器获取的原始字节数据
         "offset": [0xa0, 'f'],
         "code": [0xa4, 'f'],
         'adc_bit': [0xac, 'h'],
-        "interval": [0xb0, 'd'],
+        "interval": [0xb0, 'f'],
         "delay": [0xb4, 'd'],
         "tdiv": [0x144, 'h'],
         "probe": [0x148, 'f']
@@ -120,6 +120,14 @@ def main_wf_data():
     pl.legend()
     pl.grid()
     pl.show()
+    print("Time values:", time_value[:10])  # 打印前10个时间点
+    print("Voltage values:", volt_value[:10])  # 打印前10个电压值
+
+    # 如果数据量比较大，可以检查最大和最小值
+    print(f"Min time: {min(time_value)}, Max time: {max(time_value)}")
+    print(f"Min voltage: {min(volt_value)}, Max voltage: {max(volt_value)}")
+
+
 if __name__ == '__main__':
  main_wf_data()
 

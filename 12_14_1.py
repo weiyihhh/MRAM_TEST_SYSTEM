@@ -10,10 +10,10 @@
 #任务：通过python输出”*idn?”得到AWG正确返回的指令
 import pyvisa
 rm = pyvisa.ResourceManager()
-AWG_address = ''
+AWG_address = 'USB0::0xF4EC::0x1102::SDG7ABAQ7R0051::INSTR'
 #打开与AWG的连接，并发送SCPI命令
 device = rm.open_resource(AWG_address)
 response = device.query("*IDN?")
-print(f"AWG设备信息：{response}")
+print(f"\nAWG设备信息：{response}")
 device.close()
 

@@ -46,4 +46,4 @@ def DPO_READ_WAVE(Address, Channel):
     Device.chunk_size = 20 * 1024 * 1024
     Device.write(":WAVeform:STARt 0")
     Device.write(f"WAV:SOUR {Channel}")
-    DE
+
